@@ -12,4 +12,6 @@ print("Links are: ")
 for link in results:  #loop each hyper links
     print(link.get('href')) #print the links value
 rt_tab=soup.find('table', class_='wikitable sortable plainrowheaders') #find the table from the wiki html page
-print(rt_tab) #prints the table
+for row in rt_tab.find_all('tr'): #loop each table row
+    for col in row.find_all('td'): #loop each table column
+        print(col.text)  #print table data value
