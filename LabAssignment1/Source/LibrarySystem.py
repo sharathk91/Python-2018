@@ -29,35 +29,52 @@ class Librarian(Person):   #define the library class
     def showDetails(self):
         print("Librarian Details:")
         Person.showDetails(self)   #prints the details of librarian
-        print("Lib Id:")
+        print("Lib Id:",self.lib_id)
 
-class Book(Student):   #defines the book class
-
-    def __init__(self,name,phno,stud_id,bookname,author,id): #defines the constructor to map bookdetails
-        Student.__init__(self,name,phno,stud_id)
+class Book: #defines the book class
+    def __init__(self,bookname,author,id):
         self.bookname=bookname
         self.author=author
         self.__id=id
 
     def showDetails(self):
-#displays the details of the book
+        print("Book Details:")
+        print("Book name:",self.bookname)
+        print("Book Author:",self.author)
+        print("Book ID:",self.__id)
+
+class LendBook(Student,Book):   #defines the lendbook class
+
+    def __init__(self,name,phno,stud_id,bookname,author,id): #defines the constructor to map bookdetails
+        Student.__init__(self,name,phno,stud_id)
+        Book.__init__(self,bookname,author,id)
+
+
+    def showDetails(self):
+#displays the details of the book and student
         Student.showDetails(self)
-        print("Bookname:",self.bookname)
-        print("Author:",self.author)
-        print("Lib ID:",self.__id)
+        Book.showDetails(self)
 
 #define the list and append the objects
-objlist=[]
-buk=Book("sharath",12345,16,"Java","JavaSE",72904789)
-objlist.append((Student("sharath",12345,16)))
-objlist.append(Librarian("UMKCLibrary",67890,350))
-objlist.append(Book("sharath",12345,16,"Python","PythonSE1.6",189045678))
 
-#iterate the objects in the list and prints the details and student count
-for ob,list in enumerate(objlist):
-    list.showDetails()
-    print("\n")
-buk.showDetails()
+s1=Student("sharath",12345,16)
+l1=Librarian("UMKCLibrary",67890,350)
+b1=Book("Python","PythonSE1.6",189045678)
+b2=Book("Java","JavaSE",72904789)
+lbook1=LendBook("sharath",12345,16,"Python","PythonSE1.6",189045678)
+lbook2=LendBook("sharath",12345,16,"Java","JavaSE",72904789)
+
+s1.showDetails()
+print("\n")
+l1.showDetails()
+print("\n")
+b1.showDetails()
+print("\n")
+b2.showDetails()
+print("\n")
+lbook1.showDetails()
+print("\n")
+lbook2.showDetails()
 print("\n")
 print("Total no of students are:",Student.studentcount)
 print("Total no of Librarians are:",Librarian.libcount)
