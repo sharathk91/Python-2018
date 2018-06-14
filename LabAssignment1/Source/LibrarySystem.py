@@ -37,14 +37,14 @@ class Book(Student):   #defines the book class
         Student.__init__(self,name,phno,stud_id)
         self.bookname=bookname
         self.author=author
-        self._id=id
+        self.__id=id
 
     def showDetails(self):
 #displays the details of the book
         Student.showDetails(self)
         print("Bookname:",self.bookname)
         print("Author:",self.author)
-        print("Lib ID:",self._id)
+        print("Lib ID:",self.__id)
 
 #define the list and append the objects
 objlist=[]
